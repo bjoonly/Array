@@ -155,3 +155,96 @@ void Array::Print() const {
 	cout << "]\n";
 }
 
+Array& Array::operator++(){
+	for (int i = 0; i < size; i++)
+		++arr[i];
+	return *this;
+}
+
+Array Array::operator++(int){
+	Array old = *this;
+	for (int i = 0; i < size; i++)
+		++arr[i];
+	return old;
+}
+
+Array& Array::operator--(){
+	for (int i = 0; i < size; i++)
+		--arr[i];
+	return *this;
+}
+
+Array Array::operator--(int){
+
+	Array old = *this;
+	for (int i = 0; i < size; i++)
+		--arr[i];
+	return old;
+}
+
+Array& Array::operator=(const Array& other){
+	if (this == &other)
+		return* this;
+	size = other.size;
+	delete[]arr;
+	arr = new long[size];
+	for (int i = 0; i < size; i++)
+		arr[i] = other.arr[i];
+	return *this;
+}
+
+Array Array::operator-(){
+
+	Array res=*this;
+	for (int i = 0; i < size; i++)
+		res.arr[i] *= -1;
+	return res;
+}
+
+Array::operator long(){
+	long sum=0;
+	for (int i = 0; i < size; i++)
+		sum += arr[i];
+	return sum;
+}
+
+Array::operator char* (){
+	int length = 0;
+	long num;
+	for (int i = 0; i < size; i++) {
+		num = arr[i];		
+		if (num < 0)
+		++length;
+		num = abs(num);
+
+		int count = (num == 0) ? 1 : 0;	
+
+		while (num != 0) {
+			count++;
+			num /= 10;
+		}
+
+		length += count;
+	}
+
+	length += size;
+	char* res = new char[length] {};
+	int k = length -2;
+	for (int i = size - 1; i >= 0 ; i--) {
+		num = arr[i];
+		num=abs(num);
+		while(num!=0){			
+			res[k] = num % 10+'0';
+			num /= 10;
+			--k;
+		}
+		if (arr[i] < 0) {
+			res[k] = '-';
+			--k;
+		}
+		res[k] = ' ';
+		--k;
+	}
+	return res;
+}
+

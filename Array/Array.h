@@ -33,5 +33,15 @@ public:
 	void SortDescending();
 
 	void Print()const;
+
+	Array& operator++();
+	Array operator++(int);
+	Array& operator--();
+	Array operator--(int);
+	Array& operator=(const Array&other);
+	Array operator-();
+	operator long();
+	operator char* ();
+
 };
 
