@@ -40,6 +40,8 @@ public:
 	Array operator--(int);
 	Array& operator=(const Array&other);
 	Array operator-();
+	long &operator[](int index)const;
+	void operator()(long num);
 	operator long();
 	operator char* ();
 

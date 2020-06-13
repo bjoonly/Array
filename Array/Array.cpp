@@ -201,6 +201,19 @@ Array Array::operator-(){
 	return res;
 }
 
+long &Array::operator[](int index) const{
+	if(CheckIndex(index))
+	return arr[index];
+	static long long_min = LONG_MIN;
+	cout << "Incorrect index.";
+	return long_min;
+}
+
+void Array::operator()(long num){
+	for (int i = 0; i < size; i++)
+		arr[i] += num;
+}
+
 Array::operator long(){
 	long sum=0;
 	for (int i = 0; i < size; i++)
